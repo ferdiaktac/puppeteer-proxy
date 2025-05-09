@@ -13,10 +13,12 @@ app.get("/fetch-content", async (req, res) => {
 
     try {
         const browser = await puppeteer.launch({
+            headless: true,
             args: ["--no-sandbox", "--disable-setuid-sandbox"],
+            executablePath: "/opt/render/.cache/puppeteer/chrome-linux/chrome"
         })
-        const page = await browser.newPage()
 
+        const page = await browser.newPage()
         await page.goto(url, { waitUntil: "networkidle2" })
 
         const content = await page.evaluate((id) => {
