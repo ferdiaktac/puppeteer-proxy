@@ -15,7 +15,7 @@ app.get("/fetch-content", async (req, res) => {
         const browser = await puppeteer.launch({
             headless: true,
             args: ["--no-sandbox", "--disable-setuid-sandbox"],
-            executablePath: "/opt/render/.cache/puppeteer/chrome-linux/chrome"
+            executablePath: puppeteer.executablePath()
         })
 
         const page = await browser.newPage()
